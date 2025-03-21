@@ -132,7 +132,7 @@ export default function Header() {
             className="w-full text-center bg-[var(--accent)] text-white py-3 font-medium mt-2"
             onClick={() => setMobileMenuOpen(false)}
           >
-            Join Our Waitlist
+            Join Our Waitlist for 20% off!
           </Link>
         </nav>
       </div>

@@ -45,9 +45,9 @@ export default function Hero() {
             </div>
           </div>
           
-          {/* Image side with enhanced contrast */}
-          <div className="flex-1 md:flex-[1.3] relative mt-10 md:mt-0">
-            <div className="relative w-full h-[350px] sm:h-[400px] md:aspect-auto md:h-[500px] lg:h-[600px] ml-0 md:ml-8 md:-mr-12">
+          {/* Image side with enhanced contrast - Fixed for mobile */}
+          <div className="w-full flex-1 md:flex-[1.3] relative mt-8 md:mt-0">
+            <div className="relative mx-auto w-[280px] h-[280px] sm:w-full sm:h-[350px] md:h-[500px] lg:h-[600px] md:ml-8 md:-mr-12">
               {/* Product image with enhanced shadow for more definition */}
               <div className="absolute inset-0 w-full h-full">
                 <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-4/5 h-4 bg-black/10 blur-md rounded-full"></div>
@@ -56,8 +56,8 @@ export default function Hero() {
                   alt="Delicious overnight oats with fruits and toppings"
                   fill
                   priority
-                  className="object-contain scale-110 drop-shadow-xl"
-                  sizes="(max-width: 768px) 100vw, 600px"
+                  className="object-contain scale-105 md:scale-110 drop-shadow-xl"
+                  sizes="(max-width: 640px) 280px, (max-width: 768px) 100vw, 600px"
                 />
               </div>
             </div>

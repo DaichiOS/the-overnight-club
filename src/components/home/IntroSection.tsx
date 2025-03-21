@@ -56,15 +56,14 @@ export default function IntroSection() {
           className="max-w-5xl mx-auto rounded-2xl opacity-0 transform translate-y-4 transition-all duration-700"
         >
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-            {/* Image column - Mason jar image */}
-            <div className="w-full md:w-2/5 flex justify-center md:justify-end order-1 md:order-none mb-6 md:mb-0">
-              <div className="relative w-52 h-52 sm:w-64 sm:h-64 md:w-80 md:h-80 drop-shadow-xl transition-transform duration-700 hover:scale-105">
+            {/* Image column - Mason jar image - Fixed for mobile */}
+            <div className="w-full md:w-2/5 flex justify-center md:justify-end md:order-none mb-6 md:mb-0">
+              <div className="relative w-80 h-80 sm:w-96 sm:h-96 md:w-[450px] md:h-[450px] lg:w-[500px] lg:h-[500px] drop-shadow-xl transition-transform duration-700 hover:scale-105">
                 <Image 
                   src="/oatjar1.png" 
                   alt="Overnight oats in a mason jar" 
-                  width={300} 
-                  height={300}
-                  className="object-contain"
+                  fill
+                  className="object-contain scale-125"
                 />
               </div>
             </div>
