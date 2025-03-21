@@ -3,40 +3,6 @@
 import { subscribeAction } from '@/app/actions/subscribe';
 import Image from 'next/image';
 import { useState } from 'react';
-import { useFormStatus } from 'react-dom';
-
-// Submit button component with loading state
-function SubmitButton() {
-  const { pending } = useFormStatus();
-  
-  return (
-    <button
-      type="submit"
-      disabled={pending}
-      className="bg-gradient-to-r from-[#c1813a] to-[#d99c50] hover:from-[#b37732] hover:to-[#c98f48] transition-all text-white rounded-full px-8 py-4 font-bold shadow-md text-lg w-full disabled:opacity-70 transform hover:scale-[1.02] active:scale-[0.98] relative overflow-hidden group"
-    >
-      <span className="relative z-10 flex items-center justify-center gap-2">
-        {pending ? (
-          <>
-            <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-            </svg>
-            Joining...
-          </>
-        ) : (
-          <>
-            Join the Tasty Crew
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </>
-        )}
-      </span>
-      <div className="absolute inset-0 w-full h-full bg-white opacity-0 group-hover:opacity-10 transition-opacity"></div>
-    </button>
-  );
-}
 
 export default function WaitlistForm() {
   const [email, setEmail] = useState('');
