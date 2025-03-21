@@ -2,12 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import WaitlistModal from "../shared/WaitlistModal";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [waitlistModalOpen, setWaitlistModalOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -15,11 +17,30 @@ export default function Header() {
   
   const openWaitlistModal = () => {
     setWaitlistModalOpen(true);
+    setDropdownOpen(false);
   };
   
   const closeWaitlistModal = () => {
     setWaitlistModalOpen(false);
   };
+  
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+  
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setDropdownOpen(false);
+      }
+    };
+    
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
   
   return (
     <>
@@ -74,31 +95,47 @@ export default function Header() {
               >
                 Benefits
               </Link>
-              <div className="group relative">
+              <div className="relative" ref={dropdownRef}>
                 <button 
-                  onClick={openWaitlistModal}
-                  className="relative group bg-transparent border border-[var(--accent)] text-[var(--accent)] px-6 py-2.5 rounded-none hover:text-white transition-all duration-300 overflow-hidden font-medium tracking-wide"
+                  onClick={toggleDropdown}
+                  className="relative bg-transparent border border-[var(--accent)] text-[var(--accent)] px-6 py-2.5 rounded-none hover:bg-[var(--accent)] hover:text-white transition-all duration-300 font-medium tracking-wide flex items-center gap-1"
                 >
-                  <span className="relative z-10">Oats Are Coming — Stay in the Loop</span>
-                  <div className="absolute inset-0 bg-[var(--accent)] w-0 group-hover:w-full transition-all duration-300 ease-in-out"></div>
+                  <span>Oats Are Coming — Stay in the Loop</span>
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    width="16" 
+                    height="16" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="2" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round"
+                    className={`transition-transform duration-300 ${dropdownOpen ? 'rotate-180' : ''}`}
+                  >
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
                 </button>
-                <div className="hidden group-hover:block absolute top-full right-0 mt-1 p-2 bg-white shadow-md rounded-sm text-sm w-56">
-                  <div className="py-1 px-2 text-[var(--foreground)]/80 mb-1">
-                    Choose an option:
+                {dropdownOpen && (
+                  <div className="absolute top-full right-0 mt-1 p-2 bg-white shadow-md rounded-sm text-sm w-56 z-50 border border-[var(--secondary)]/20">
+                    <div className="py-1 px-2 text-[var(--foreground)]/80 mb-1">
+                      Choose an option:
+                    </div>
+                    <button 
+                      onClick={openWaitlistModal} 
+                      className="block w-full text-left py-2 px-2 hover:bg-[var(--secondary)]/20 text-[var(--primary)]"
+                    >
+                      Quick Signup
+                    </button>
+                    <Link 
+                      href="/waitlist"
+                      className="block w-full text-left py-2 px-2 hover:bg-[var(--secondary)]/20 text-[var(--primary)]"
+                      onClick={() => setDropdownOpen(false)}
+                    >
+                      Full Waitlist Page
+                    </Link>
                   </div>
-                  <button 
-                    onClick={openWaitlistModal} 
-                    className="block w-full text-left py-2 px-2 hover:bg-[var(--secondary)]/20 text-[var(--primary)]"
-                  >
-                    Quick Signup
-                  </button>
-                  <Link 
-                    href="/waitlist"
-                    className="block w-full text-left py-2 px-2 hover:bg-[var(--secondary)]/20 text-[var(--primary)]"
-                  >
-                    Full Waitlist Page
-                  </Link>
-                </div>
+                )}
               </div>
             </nav>
             
