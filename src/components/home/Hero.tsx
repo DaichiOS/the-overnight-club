@@ -47,16 +47,16 @@ export default function Hero() {
           
           {/* Image side with enhanced contrast - Fixed for mobile */}
           <div className="w-full flex-1 md:flex-[1.3] relative mt-8 md:mt-0">
-            <div className="relative mx-auto w-[280px] h-[280px] sm:w-full sm:h-[350px] md:h-[500px] lg:h-[600px] md:ml-8 md:-mr-12">
+            <div className="relative mx-auto w-[280px] h-[280px] sm:w-full sm:h-[350px] md:h-[500px] lg:h-[600px] md:ml-8 md:-mr-12 group">
               {/* Product image with enhanced shadow for more definition */}
               <div className="absolute inset-0 w-full h-full">
-                <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-4/5 h-4 bg-black/10 blur-md rounded-full"></div>
+                <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-4/5 h-4 bg-black/10 blur-md rounded-full transition-all duration-500 ease-in-out group-hover:w-[85%] group-hover:h-5 group-hover:bg-black/15"></div>
                 <Image
                   src="/Hero.png"
                   alt="Delicious overnight oats with fruits and toppings"
                   fill
                   priority
-                  className="object-contain scale-105 md:scale-110 drop-shadow-xl"
+                  className="object-contain scale-105 md:scale-110 drop-shadow-xl transition-all duration-500 ease-in-out group-hover:scale-[1.12] md:group-hover:scale-[1.15] group-hover:drop-shadow-2xl group-hover:-translate-y-2"
                   sizes="(max-width: 640px) 280px, (max-width: 768px) 100vw, 600px"
                 />
               </div>

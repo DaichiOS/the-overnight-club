@@ -1,12 +1,31 @@
 "use client";
 
+import { subscribeAction } from '@/app/actions/subscribe';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
+import { useFormStatus } from 'react-dom';
+
+// Submit button component with loading state
+function SubmitButton() {
+  const { pending } = useFormStatus();
+  
+  return (
+    <button
+      type="submit"
+      disabled={pending}
+      className="bg-accent hover:bg-accent/90 transition-colors text-white rounded-md px-6 py-3 font-medium shadow-sm whitespace-nowrap disabled:opacity-70"
+    >
+      {pending ? 'Joining...' : 'Join Waitlist'}
+    </button>
+  );
+}
 
 export default function IntroSection() {
   const contentRef = useRef<HTMLDivElement>(null);
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [message, setMessage] = useState('');
+  const [isError, setIsError] = useState(false);
   
   // Simple animation on scroll
   useEffect(() => {
@@ -30,16 +49,27 @@ export default function IntroSection() {
     };
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // In a real implementation, you would send this to your API/backend
-    console.log('Email submitted:', email);
-    setSubmitted(true);
-    // Reset form after 5 seconds for demo purposes
-    setTimeout(() => {
-      setSubmitted(false);
-      setEmail('');
-    }, 5000);
+  const handleSubmit = async (formData: FormData) => {
+    // Server action handles the submission
+    const result = await subscribeAction(formData);
+    
+    if (result.success) {
+      setSubmitted(true);
+      setIsError(false);
+    } else {
+      setIsError(true);
+    }
+    
+    setMessage(result.message);
+    
+    // Reset form after 5 seconds on success
+    if (result.success) {
+      setTimeout(() => {
+        setSubmitted(false);
+        setEmail('');
+        setMessage('');
+      }, 5000);
+    }
   };
   
   return (
@@ -114,23 +144,24 @@ export default function IntroSection() {
                       </div>
                     </div>
                     
-                    <form onSubmit={handleSubmit} className="space-y-3">
+                    <form action={handleSubmit} className="space-y-3">
                       <div className="flex flex-col sm:flex-row gap-3">
                         <input
                           type="email"
+                          name="email"
                           placeholder="Your email address"
                           className="flex-1 px-4 py-3 rounded-md border border-primary/20 focus:outline-none focus:ring-2 focus:ring-accent/50"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           required
                         />
-                        <button
-                          type="submit"
-                          className="bg-accent hover:bg-accent/90 transition-colors text-white rounded-md px-6 py-3 font-medium shadow-sm whitespace-nowrap"
-                        >
-                          Join & Save 20%
-                        </button>
+                        <SubmitButton />
                       </div>
+                      
+                      {isError && (
+                        <p className="text-sm text-red-500 mt-2">{message}</p>
+                      )}
+                      
                       <p className="text-xs text-foreground/60 text-center sm:text-left">
                         Be among the first to experience our delicious and nutritious overnight oats.
                         <br className="hidden sm:block" />We&apos;ll notify you at launch with your exclusive discount code.
@@ -144,9 +175,9 @@ export default function IntroSection() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <h4 className="text-xl font-bold text-primary mb-2">You&apos;re on the list!</h4>
+                    <h4 className="text-xl font-bold text-primary mb-2">You&apos;re on the waitlist!</h4>
                     <p className="text-foreground/80">
-                      Thanks for joining our founding members. We&apos;ll send your 20% discount when we launch.
+                      {message || "Thanks for joining. We'll send your 20% discount code when we launch."}
                     </p>
                     <p className="text-sm text-foreground/60 mt-3">
                       We can&apos;t wait to share our delicious oats with you!
