@@ -1,0 +1,14 @@
+{
+  "name": "The Overnight Club",
+  "short_name": "Overnight Club",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    }
+  ],
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone"
+} 

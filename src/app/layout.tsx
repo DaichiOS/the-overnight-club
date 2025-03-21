@@ -21,6 +21,21 @@ const quicksand = Quicksand({
 export const metadata: Metadata = {
   title: "The Overnight Club | Premium Overnight Oats",
   description: "Overnight oats with the finest ingredients, crafted with care and ready to elevate your morning.",
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+    ],
+    shortcut: [{ url: '/favicon.ico' }],
+    apple: [
+      { url: '/favicon.ico' },
+    ],
+    other: [
+      {
+        rel: 'apple-touch-icon',
+        url: '/favicon.ico',
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
