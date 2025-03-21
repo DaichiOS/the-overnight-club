@@ -2,8 +2,15 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Header() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+  
   return (
     <header className="sticky top-0 z-50 w-full bg-[var(--header)] shadow-sm border-b border-[var(--secondary)]">
       <div className="container mx-auto px-4">
@@ -20,13 +27,18 @@ export default function Header() {
                   priority
                 />
               </div>
-              <div className="flex flex-col">
+              <div className="hidden sm:flex flex-col">
                 <h1 className="font-semibold tracking-wide text-[var(--header-text)] text-xl md:text-2xl">
-                  THE OVERNIGHT CLUB
+                  THE OVERNIGHT OATS CLUB
                 </h1>
                 <p className="text-sm text-[var(--header-text)] opacity-80 font-quicksand tracking-wider">
                   PREMIUM OVERNIGHT OATS
                 </p>
+              </div>
+              <div className="flex sm:hidden flex-col">
+                <h1 className="font-semibold tracking-wide text-[var(--header-text)] text-lg">
+                  OVERNIGHT CLUB
+                </h1>
               </div>
             </div>
           </Link>
@@ -74,6 +86,7 @@ export default function Header() {
             <button 
               className="rounded-none border border-[var(--secondary)] p-2 text-[var(--primary)] hover:bg-[var(--secondary)]/10 transition-colors"
               aria-label="Menu"
+              onClick={toggleMobileMenu}
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -83,6 +96,45 @@ export default function Header() {
             </button>
           </div>
         </div>
+      </div>
+      
+      {/* Mobile Menu - Slide down when active */}
+      <div 
+        className={`absolute top-[96px] left-0 right-0 bg-[var(--header)] shadow-md px-4 py-5 transform transition-transform duration-300 ease-in-out md:hidden ${
+          mobileMenuOpen ? 'translate-y-0' : '-translate-y-full'
+        }`}
+        style={{ zIndex: 40 }}
+      >
+        <nav className="flex flex-col space-y-5">
+          <Link 
+            href="/about" 
+            className="font-quicksand text-[var(--header-text)] text-base py-2 border-b border-[var(--secondary)]/20 hover:text-[var(--primary)] transition-colors"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Our Story
+          </Link>
+          <Link 
+            href="/products" 
+            className="font-quicksand text-[var(--header-text)] text-base py-2 border-b border-[var(--secondary)]/20 hover:text-[var(--primary)] transition-colors"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Ingredients
+          </Link>
+          <Link 
+            href="/benefits" 
+            className="font-quicksand text-[var(--header-text)] text-base py-2 border-b border-[var(--secondary)]/20 hover:text-[var(--primary)] transition-colors"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Benefits
+          </Link>
+          <Link 
+            href="/contact" 
+            className="w-full text-center bg-[var(--accent)] text-white py-3 font-medium mt-2"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Join Our Waitlist
+          </Link>
+        </nav>
       </div>
     </header>
   );
