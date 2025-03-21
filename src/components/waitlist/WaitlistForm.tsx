@@ -27,14 +27,7 @@ export default function WaitlistForm() {
       
       setMessage(result.message);
       
-      // Reset form after success timer
-      if (result.success) {
-        setTimeout(() => {
-          setSubmitted(false);
-          setEmail('');
-          setMessage('');
-        }, 7000);
-      }
+      // No timeout to reset the form - we want the success message to stay
     } catch (error) {
       // Handle any unexpected errors
       console.error("Error submitting form:", error);
@@ -79,12 +72,7 @@ export default function WaitlistForm() {
         setIsError(false);
         setMessage("You're on the waitlist! You'll receive your 20% discount code when we launch.");
         
-        // Reset form after success timer
-        setTimeout(() => {
-          setSubmitted(false);
-          setEmail('');
-          setMessage('');
-        }, 7000);
+        // No timeout here either - keep the success state
       }
     } finally {
       setIsSubmitting(false);
