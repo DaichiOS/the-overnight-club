@@ -31,7 +31,7 @@ export default function Header() {
             </div>
           </Link>
           
-          {/* Navigation */}
+          {/* Navigation - Desktop */}
           <nav className="hidden md:flex items-center space-x-7">
             <Link 
               href="/about" 
@@ -53,16 +53,26 @@ export default function Header() {
             </Link>
             <Link 
               href="/contact" 
-              className="rounded-full bg-[var(--accent)] px-5 py-2 font-quicksand text-white text-base shadow-sm hover:bg-opacity-90 transition-colors"
+              className="relative group bg-transparent border border-[var(--accent)] text-[var(--accent)] px-6 py-2.5 rounded-none hover:text-white transition-all duration-300 overflow-hidden font-medium tracking-wide"
             >
-              Join Waitlist
+              <span className="relative z-10">Oats Are Coming — Stay in the Loop</span>
+              <div className="absolute inset-0 bg-[var(--accent)] w-0 group-hover:w-full transition-all duration-300 ease-in-out"></div>
             </Link>
           </nav>
           
-          {/* Mobile Menu Button (placeholder) */}
-          <div className="flex md:hidden items-center">
+          {/* Mobile Actions */}
+          <div className="flex md:hidden items-center space-x-3">
+            {/* Mobile CTA */}
+            <Link
+              href="/contact"
+              className="border border-[var(--accent)] bg-transparent text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white transition-all duration-300 px-3 py-1.5 text-sm font-medium tracking-wide"
+            >
+              Join Waitlist
+            </Link>
+            
+            {/* Mobile Menu Button */}
             <button 
-              className="rounded-full bg-[var(--secondary)] p-2 text-[var(--primary)] hover:bg-opacity-90 transition-colors"
+              className="rounded-none border border-[var(--secondary)] p-2 text-[var(--primary)] hover:bg-[var(--secondary)]/10 transition-colors"
               aria-label="Menu"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

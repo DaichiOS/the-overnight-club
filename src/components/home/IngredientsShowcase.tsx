@@ -127,7 +127,7 @@ export default function IngredientsShowcase() {
   };
   
   return (
-    <section className="py-16 md:py-24 bg-[#f8f5ef]">
+    <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
         <div className="mb-14 max-w-2xl mx-auto">
           <h2 className="text-3xl md:text-5xl font-light text-accent mb-4 text-center">
