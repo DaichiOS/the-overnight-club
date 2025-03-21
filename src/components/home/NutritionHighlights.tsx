@@ -78,7 +78,7 @@ export default function NutritionHighlights() {
                 <p className="text-sm text-black">1 serving per container</p>
                 <div className="flex justify-between border-b-8 border-black py-1 mt-1">
                   <p className="font-bold text-black">Serving size</p>
-                  <p className="font-bold text-black">1 Pouch (80g)</p>
+                  <p className="font-bold text-black">1 Jar (250g)</p>
                 </div>
                 
                 <div className="py-2 border-b-4 border-black">
@@ -164,18 +164,13 @@ export default function NutritionHighlights() {
                   *The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily diet. 2,000 calories a day is used for general nutrition advice.
                 </p>
               </div>
-              
               <div className="bg-neutral-100 px-4 py-3">
                 <p className="text-xs font-bold text-black">INGREDIENTS:</p>
                 <p className="text-xs text-black">
-                  WHOLE GRAIN ROLLED OATS, WHEY PROTEIN BLEND (WHEY PROTEIN, PROTEIN CONCENTRATE, MILK POWDER), POWDERED DATES, NATURAL FLAVOURS, SWEET CREAM POWDER, MAPLE SUGAR CRYSTALS, MILK POWDER, VANILLA EXTRACT, MONK FRUIT EXTRACT.
+                  WHOLE GRAIN ROLLED OATS, GREEK YOGHURT, CHIA SEEDS, MILK, , HONEY, BLUEBERRIES, WALNUTS.
                 </p>
                 
                 <p className="text-xs font-bold text-black mt-2">CONTAINS: MILK, WHEAT, SOY</p>
-                
-                <p className="text-xs text-black mt-2">
-                  MADE IN A FACILITY THAT ALSO HANDLES: PEANUTS, TREE NUTS
-                </p>
               </div>
             </div>
           </div>
