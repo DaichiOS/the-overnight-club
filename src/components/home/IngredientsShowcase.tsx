@@ -21,8 +21,8 @@ type Ingredient = {
 const ingredients: Ingredient[] = [
   {
     id: 'milk',
-    name: 'Plant-Based Milk',
-    description: 'Your choice of almond, oat, or coconut milk for the perfect creamy consistency that complements all the other ingredients.',
+    name: 'Milk',
+    description: 'Your choice of full-cream, almond, oat, or coconut milk for the perfect creamy consistency that complements all the other ingredients.',
     imageSrc: '/milk.png',
     x: 2,
     y: 90,
